@@ -18,35 +18,40 @@ class ProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 340,
-      color: backgroundColor ?? Colors.transparent,
-      child: Column(
-        children: [
-          ProductHeader(title: title),
-          Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
-              itemCount: items.length,
-              itemBuilder: (BuildContext context, int index) {
-                final name = items[index].name;
-                final description = items[index].description;
-                final price = items[index].price;
-                final image = items[index].image;
+    return DefaultTextStyle(
+      style: TextStyle(
+        fontFamily: "NanumMyeongjo",
+      ),
+      child: Container(
+        height: 340,
+        color: backgroundColor ?? Colors.transparent,
+        child: Column(
+          children: [
+            ProductHeader(title: title),
+            Expanded(
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                physics: BouncingScrollPhysics(),
+                itemCount: items.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final name = items[index].name;
+                  final description = items[index].description;
+                  final price = items[index].price;
+                  final image = items[index].image;
 
-                return ProductListItem(
-                  description: description,
-                  name: name,
-                  price: price,
-                  image: image,
-                  marginLeft: index == 0 ? 20 : 5,
-                  marginRight: index == items.length - 1 ? 20 : 5,
-                );
-              },
+                  return ProductListItem(
+                    description: description,
+                    name: name,
+                    price: price,
+                    image: image,
+                    marginLeft: index == 0 ? 20 : 5,
+                    marginRight: index == items.length - 1 ? 20 : 5,
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

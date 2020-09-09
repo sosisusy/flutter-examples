@@ -1,9 +1,8 @@
 import 'package:design_1/models/banner_item.dart';
 import 'package:design_1/models/blog.dart';
 import 'package:design_1/models/product.dart';
-import 'package:design_1/widgets/blog_pageview.dart';
-import 'package:design_1/widgets/main_banner_pageview.dart';
-import 'package:design_1/widgets/product_list.dart';
+import 'package:design_1/screens/home_screen.dart';
+import 'package:design_1/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -13,6 +12,10 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  PageController _pageController;
+  int _currentScreen = 0;
+
+  // 배너 아이템
   List<BannerItem> bannerItems = [
     BannerItem(
       subTitle: "Featured Collection",
@@ -36,6 +39,7 @@ class _MainPageState extends State<MainPage> {
     ),
   ];
 
+  // 제품1
   List<ProductItem> productItems = [
     ProductItem(
       image: "images/shirt1.jpg",
@@ -63,6 +67,7 @@ class _MainPageState extends State<MainPage> {
     ),
   ];
 
+  // 립스틱 컬렉션
   List<ProductItem> lipItems = [
     ProductItem(
       image: "images/lip1.jpg",
@@ -90,6 +95,7 @@ class _MainPageState extends State<MainPage> {
     ),
   ];
 
+  // 블로그
   List<Blog> blogItems = [
     Blog(
       title: "My go-to new nude\npalette look",
@@ -126,36 +132,75 @@ class _MainPageState extends State<MainPage> {
         statusBarIconBrightness: Brightness.dark,
       ),
     );
+
+    _pageController = PageController(viewportFraction: 1);
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                // 메인 배너
-                MainBannerPageView(
-                  items: bannerItems,
-                ),
-                ProductList(
-                  title: "New Arrivals",
-                  items: productItems,
-                  backgroundColor: Color(0xfffcf7f1),
-                ),
-                ProductList(
-                  title: "Lip Collection",
-                  items: lipItems,
-                  backgroundColor: Color(0xfff5eee8),
-                ),
-                BlogPageview(
-                  title: "Beautty Blog",
-                  items: blogItems,
-                ),
-              ],
-            ),
+      resizeToAvoidBottomPadding: false,
+      body: PageView(
+        controller: _pageController,
+        physics: NeverScrollableScrollPhysics(),
+        children: [
+          HomeScreen(
+            bannerItems: bannerItems,
+            blogItems: blogItems,
+            lipItems: lipItems,
+            productItems: productItems,
+          ),
+          SearchScreen(
+            productItems: productItems,
+          ),
+          Text("test123123"),
+          Text("test12333333333"),
+          Text("test555555555555555555"),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
+        iconSize: 23,
+        selectedFontSize: 0,
+        unselectedFontSize: 0,
+        currentIndex: _currentScreen,
+        onTap: (value) {
+          setState(() {
+            _pageController.animateToPage(
+              value,
+              duration: Duration(milliseconds: 200),
+              curve: Curves.ease,
+            );
+            _currentScreen = value;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            title: Text(""),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            title: Text(""),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_basket_outlined),
+            title: Text(""),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_border),
+            title: Text(""),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            title: Text(""),
           ),
         ],
       ),

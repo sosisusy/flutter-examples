@@ -9,7 +9,6 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: Color(0xfffcf7f1),
-        fontFamily: "NanumMyeongjo",
       ),
       home: ScrollConfiguration(
         behavior: DefaultBehavior(),
