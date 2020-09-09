@@ -37,6 +37,7 @@ class _MainBannerPageViewState extends State<MainBannerPageView> {
               return MainBannerItem(
                 subTitle: widget.items[index].subTitle,
                 title: widget.items[index].title,
+                background: widget.items[index].background,
               );
             },
             onPageChanged: (value) {

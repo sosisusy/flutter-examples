@@ -1,22 +1,21 @@
-import 'package:design_1/models/product.dart';
 import 'package:flutter/material.dart';
 
 class ProductListItem extends StatelessWidget {
   const ProductListItem({
     Key key,
-    @required this.items,
     @required this.description,
     @required this.name,
     @required this.price,
+    @required this.image,
     double marginLeft,
     double marginRight,
   })  : this.marginLeft = marginLeft ?? 0,
         this.marginRight = marginRight ?? 0,
         super(key: key);
 
-  final List<ProductItem> items;
   final String description;
   final String name;
+  final String image;
   final double price;
   final double marginLeft, marginRight;
 
@@ -33,15 +32,23 @@ class ProductListItem extends StatelessWidget {
           left: marginLeft,
           right: marginRight,
         ),
-        width: 160,
+        width: 150,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               height: 200,
+              width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  image,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             SizedBox(

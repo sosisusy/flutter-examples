@@ -1,4 +1,5 @@
 import 'package:design_1/pages/main_page.dart';
+import 'package:design_1/utils/scroll/default_behavior.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -10,7 +11,10 @@ class App extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xfffcf7f1),
         fontFamily: "NanumMyeongjo",
       ),
-      home: MainPage(),
+      home: ScrollConfiguration(
+        behavior: DefaultBehavior(),
+        child: MainPage(),
+      ),
     );
   }
 }

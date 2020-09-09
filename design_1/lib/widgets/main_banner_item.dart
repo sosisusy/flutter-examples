@@ -1,19 +1,22 @@
+import 'package:design_1/utils/helper/hex_color.dart';
 import 'package:flutter/material.dart';
 
 // 메인 배너 아이템
 class MainBannerItem extends StatelessWidget {
   final String subTitle, title;
+  final String background;
 
   const MainBannerItem({
     Key key,
     this.subTitle,
     this.title,
+    this.background,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xffeee2d6),
+      color: background != null ? HexColor(background) : Colors.transparent,
       child: Container(
         alignment: Alignment.centerLeft,
         padding: EdgeInsets.symmetric(
