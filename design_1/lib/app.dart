@@ -1,5 +1,6 @@
 import 'package:design_1/pages/main_page.dart';
 import 'package:design_1/utils/scroll/default_behavior.dart';
+import 'package:design_1/variable.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -8,7 +9,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xfffcf7f1),
+        scaffoldBackgroundColor: defaultScaffoldBackgroundColor,
       ),
       home: ScrollConfiguration(
         behavior: DefaultBehavior(),

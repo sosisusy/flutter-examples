@@ -126,13 +126,6 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.dark,
-      ),
-    );
-
     _pageController = PageController(viewportFraction: 1);
   }
 
@@ -144,6 +137,14 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    // status bar
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+    );
+
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       body: PageView(
@@ -156,10 +157,10 @@ class _MainPageState extends State<MainPage> {
             lipItems: lipItems,
             productItems: productItems,
           ),
+          Text("test123123"),
           SearchScreen(
             productItems: productItems,
           ),
-          Text("test123123"),
           Text("test12333333333"),
           Text("test555555555555555555"),
         ],
@@ -167,10 +168,10 @@ class _MainPageState extends State<MainPage> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
-        iconSize: 23,
-        selectedFontSize: 0,
-        unselectedFontSize: 0,
+        iconSize: 24,
         currentIndex: _currentScreen,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         onTap: (value) {
           setState(() {
             _pageController.animateToPage(
@@ -184,23 +185,23 @@ class _MainPageState extends State<MainPage> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
-            title: Text(""),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            title: Text(""),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_basket_outlined),
-            title: Text(""),
+            title: Text("홈"),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_border),
-            title: Text(""),
+            title: Text("제품"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            title: Text("검색"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_basket_outlined),
+            title: Text("장바구니"),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
-            title: Text(""),
+            title: Text("내정보"),
           ),
         ],
       ),

@@ -9,8 +9,10 @@ class ProductListItem extends StatelessWidget {
     @required this.image,
     double marginLeft,
     double marginRight,
+    double width,
   })  : this.marginLeft = marginLeft ?? 0,
         this.marginRight = marginRight ?? 0,
+        this.width = width != null ? width * 1.0 : 150.0,
         super(key: key);
 
   final String description;
@@ -18,6 +20,7 @@ class ProductListItem extends StatelessWidget {
   final String image;
   final double price;
   final double marginLeft, marginRight;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,7 @@ class ProductListItem extends StatelessWidget {
           left: marginLeft,
           right: marginRight,
         ),
-        width: 150,
+        width: width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
